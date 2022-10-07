@@ -1,26 +1,31 @@
 import React from 'react';
 import Header from '../components/header';
 
+import { apiSlice } from '../features/apiSlice';
+
 export default function HeroSec() {
-  return (
-    <>
-      <Header />
-      <div className="container mx-auto flex space-y-60  items-center justify-center ">
-        <div>
-          <h1 className="text-7xl ">
-            To Succeed <br /> you must be <br /> read
-          </h1>
-          <p className="">
-            Not Sure What To Read Next ? Explore Our Catalog ,<br /> Of Public Domain Books With Our
-            Editors.
-          </p>
-          <button className="bg-metal p-2 rounded mt-5">Explore Now</button>
-        </div>
-        <div className=" flex space-x-5 ">
-          <div className="w-40 h-52 rounded rotate-12 bg-silver"></div>
-          <div className="w-40 h-52 rounded rotate-12 bg-metal"></div>
+  let book;
+  const { data, isFetching, isSuccess, isError } = apiSlice.useGetBooksQuery();
+
+  if (isFetching) {
+    book = (
+      <div className="d-flex justify-content-center">
+        <div className="spinner-border" role="status">
+          <span className="visually-hidden">Loading...</span>
         </div>
       </div>
-    </>
-  );
+    );
+  } else if (isSuccess) {
+    book = data.data.book.map((book) => {
+      return <div>{book.title}</div>;
+    });
+  } else if (isError) {
+    book = (
+      <div className="alert alert-danger" role="alert">
+        {isError}
+      </div>
+    );
+  }
+
+  return <div className="row">{book}</div>;
 }
