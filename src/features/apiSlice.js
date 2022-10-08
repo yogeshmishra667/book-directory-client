@@ -4,20 +4,27 @@ const baseURI = 'http://localhost:8000/api/v1/books';
 
 export const apiSlice = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: baseURI }),
-  tagTypes: ['Post'],
+  tagTypes: ['Book'],
   endpoints: (builder) => ({
     // get all books
     getBooks: builder.query({
       // get: 'http://localhost:8000/api/v1/books'
       query: () => '/',
-      providesTags: ['books'],
+      providesTags: ['Book'],
     }),
 
     // get specific book
     getBook: builder.query({
       // get: 'http://localhost:8000/api/v1/books/id'
-      query: (id) => `/${id}`,
-      providesTags: ['books'],
+
+      query: (id) => {
+        console.log(id);
+        return {
+          url: `/${id}`,
+          params: { id },
+        };
+      },
+      providesTags: ['Book'],
     }),
 
     // add new Transaction
@@ -28,7 +35,7 @@ export const apiSlice = createApi({
         method: 'POST',
         body: payload,
       }),
-      invalidatesTags: ['Books'],
+      invalidatesTags: ['Book'],
     }),
     // add new Transaction
     updateBook: builder.mutation({
@@ -38,7 +45,7 @@ export const apiSlice = createApi({
         method: 'POST',
         body: payload,
       }),
-      invalidatesTags: ['Books'],
+      invalidatesTags: ['Book'],
     }),
 
     // delete record
@@ -49,7 +56,7 @@ export const apiSlice = createApi({
         method: 'DELETE',
         body: id,
       }),
-      invalidatesTags: ['Books'],
+      invalidatesTags: ['Book'],
     }),
     //additional feature for book
 
@@ -57,19 +64,19 @@ export const apiSlice = createApi({
     getTop5Books: builder.query({
       // get: 'http://localhost:8000/api/v1/books/top-5-books'
       query: () => '/top-5-books',
-      providesTags: ['books'],
+      providesTags: ['Book'],
     }),
     // get latest book
     getLatestBooks: builder.query({
       // get: 'http://localhost:8000/api/v1/books/latest-book'
       query: () => '/latest-book',
-      providesTags: ['books'],
+      providesTags: ['Book'],
     }),
     // get best seller books
     getBestSellerBooks: builder.query({
       // get: 'http://localhost:8000/api/v1/books/bestSeller'
       query: () => '/bestSeller',
-      providesTags: ['books'],
+      providesTags: ['Book'],
     }),
   }),
 });

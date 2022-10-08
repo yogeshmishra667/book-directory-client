@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../components/header';
+import { Link } from 'react-router-dom';
 
 import { apiSlice } from '../features/apiSlice';
 
@@ -17,7 +18,11 @@ export default function HeroSec() {
     );
   } else if (isSuccess) {
     book = data.data.book.map((book) => {
-      return <div>{book.title}</div>;
+      return (
+        <div>
+          <Link to={book._id}>{book.title}</Link>
+        </div>
+      );
     });
   } else if (isError) {
     book = (
@@ -26,6 +31,5 @@ export default function HeroSec() {
       </div>
     );
   }
-
   return <div className="row">{book}</div>;
 }
