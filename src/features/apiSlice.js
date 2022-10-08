@@ -16,8 +16,8 @@ export const apiSlice = createApi({
     // get specific book
     getBook: builder.query({
       // get: 'http://localhost:8000/api/v1/books/id'
-      query: (id) => `${id}`,
-      providesTags: ['book'],
+      query: (id) => `/${id}`,
+      providesTags: ['books'],
     }),
 
     // add new Transaction

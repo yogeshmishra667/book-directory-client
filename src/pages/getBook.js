@@ -3,6 +3,7 @@ import { apiSlice } from '../features/apiSlice';
 
 export default function GetBook() {
   const { data } = apiSlice.useGetBookQuery('632ae11690f2ab52c582e3b1');
+  console.log(data);
   return (
     <>
       <br />

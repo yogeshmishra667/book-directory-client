@@ -34,8 +34,7 @@ export default function HeroSec() {
   return (
     <div className="row">
       {book}
-      <br />
-      {/* <GetBook /> */}
+      <GetBook />
       <br />
       <GetTopFive />
       <br />
