@@ -2,15 +2,10 @@ import React from 'react';
 import Header from '../components/header';
 
 import { apiSlice } from '../features/apiSlice';
-import BestSeller from './bestSeller';
-import GetBook from './getBook';
-import GetTopFive from './getTopFive';
-import GetLatestBook from './latestBook';
 
-export default function HeroSec() {
+export default function BestSeller() {
   let book;
-  const { data, isFetching, isSuccess, isError } = apiSlice.useGetBooksQuery();
-
+  const { data, isFetching, isSuccess, isError } = apiSlice.useGetBestSellerBooksQuery();
   if (isFetching) {
     book = (
       <div className="d-flex justify-content-center">
@@ -31,17 +26,5 @@ export default function HeroSec() {
     );
   }
 
-  return (
-    <div className="row">
-      {book}
-      <br />
-      {/* <GetBook /> */}
-      <br />
-      <GetTopFive />
-      <br />
-      <GetLatestBook />
-      <br />
-      <BestSeller />
-    </div>
-  );
+  return <div className="row">{book}</div>;
 }
