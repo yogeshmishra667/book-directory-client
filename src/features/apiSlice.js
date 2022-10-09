@@ -50,12 +50,14 @@ export const apiSlice = createApi({
 
     // delete record
     deleteBooks: builder.mutation({
-      query: (id) => ({
+      query: (id) => {
         // delete: 'http://localhost:8000/api/v1/books'
-        url: `/${id}`,
-        method: 'DELETE',
-        body: id,
-      }),
+        return {
+          url: `/${id}`,
+          method: 'DELETE',
+          body: id,
+        };
+      },
       invalidatesTags: ['Book'],
     }),
     //additional feature for book
@@ -84,6 +86,7 @@ export const apiSlice = createApi({
 export const {
   useGetBooksQuery,
   useGetBookQuery,
+  useDeleteBooksMutation,
   useGetTop5BooksQuery,
   useGetLatestBooksQuery,
   useGetBestSellerBooksQuery,
