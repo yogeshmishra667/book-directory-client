@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { apiSlice } from '../features/apiSlice';
+import Spinner from './spinner';
 
 export default function GetBook() {
   let book;
@@ -10,13 +11,7 @@ export default function GetBook() {
   //console.log(`the yogesh ${id}`);
 
   if (isFetching) {
-    book = (
-      <div className="d-flex justify-content-center">
-        <div className="spinner-border" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </div>
-      </div>
-    );
+    book = <Spinner />;
   } else if (isSuccess) {
     return (
       <div>

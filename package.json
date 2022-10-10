@@ -14,7 +14,7 @@
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.4",
     "react-router-dom": "^6.4.2",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -42,7 +42,7 @@
     ]
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.12",
+    "autoprefixer": "^9.8.8",
     "postcss": "^8.4.17",
     "prettier": "^2.7.1",
     "tailwindcss": "^3.1.8"
