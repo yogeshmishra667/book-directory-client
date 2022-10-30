@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+
+  /* it apply on all the li */
+  li {
+    @apply p-4 pointer-events-auto cursor-pointer;
+
+  }
+
+  button {
+    /* it apply on all the button */
+    @apply text-white border bg-indigo-600 border-indigo-600 rounded-md
+  }
+
+
+
+}
