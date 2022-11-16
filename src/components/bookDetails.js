@@ -1,8 +1,13 @@
 import React from 'react';
 import mainImg from '../assets/the-alchemist.jpeg';
-import BookDetailsList from './bookDetailsList';
+import { useParams } from 'react-router-dom';
+import { apiSlice } from '../features/apiSlice';
 
 const BookDetails = () => {
+  let book;
+  let { id } = useParams();
+  const { data, isFetching, isSuccess, isError } = apiSlice.useGetBookQuery(id);
+  //const details = data.data.book;
   return (
     <div className="w-full h-full p-20 items-center">
       <div className="grid md:grid-cols-2 max-w-[1240px]">
@@ -27,10 +32,9 @@ const BookDetails = () => {
             </div>
           </div>
           <p className="py-4">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris,
-            porta sit magna sagittis non. Quis tellus ipsum nulla nibh volutpat.
-            Posuere dui ullamcorper odio placerat ac vulputate. Dui egestas
-            faucibus gravida neque eget.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris, porta sit magna
+            sagittis non. Quis tellus ipsum nulla nibh volutpat. Posuere dui ullamcorper odio
+            placerat ac vulputate. Dui egestas faucibus gravida neque eget.
           </p>
           <div className="grid md:grid-cols-2 items-center justify-around space-y-4">
             <p>
@@ -83,3 +87,26 @@ const BookDetails = () => {
 };
 
 export default BookDetails;
+
+//   //console.log(data);
+//   //console.log(`the yogesh ${id}`);
+
+//   if (isFetching) {
+//     book = <Spinner />;
+//   } else if (isSuccess) {
+//     return (
+//       <div>
+//         <h5>{data.data.book.title}</h5>
+//         <p>{data.data.book.Author}</p>
+//         <p>{data.data.book.publishedDate}</p>
+//         <p>{data.data.book.summary}</p>
+//       </div>
+//     );
+//   } else if (isError) {
+//     book = (
+//       <div className="alert alert-danger" role="alert">
+//         {isError}
+//       </div>
+//     );
+//   }
+//   return <div className="row">{book}</div>;

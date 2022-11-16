@@ -3,12 +3,13 @@ import HeroPage from '../pages/HeroSec';
 import About from '../pages/About';
 import Contact from '../pages/Contact';
 import MainBook from '../pages/mainBook';
+import MainBooks from './HeroMain';
 
 const Index = () => {
   return (
     <div>
       <HeroPage />
-      <MainBook />
+      <MainBooks />
       <About />
       <Contact />
     </div>
