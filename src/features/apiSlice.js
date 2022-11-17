@@ -18,7 +18,6 @@ export const apiSlice = createApi({
       // get: 'http://localhost:8000/api/v1/books/id'
 
       query: (id) => {
-        console.log(id);
         return {
           url: `/${id}`,
           params: { id },

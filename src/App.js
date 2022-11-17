@@ -1,7 +1,6 @@
 import HeroPage from './pages/HeroSec';
 import { Route, Routes } from 'react-router-dom';
 import BestSeller from './pages/bestSeller';
-import GetBook from './pages/getBook';
 import GetTopFive from './pages/getTopFive';
 import GetLatestBook from './pages/latestBook.js';
 import Delete from './pages/delete';
@@ -14,6 +13,7 @@ import Contact from './pages/Contact';
 import MainBook from './pages/mainBook';
 import Index from './pages/index';
 import BookDetails from './components/bookDetails';
+import MoreBooks from './pages/moreBooks';
 
 function App() {
   return (
@@ -21,6 +21,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/:id" element={<BookDetails />} />
+        <Route path="/moreBooks" element={<MoreBooks />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
       </Routes>

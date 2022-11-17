@@ -93,9 +93,9 @@ const GetBooks = ({ book }) => {
 
             <div className="flex justify-end">
               <p className="inline-block font-semibold text-primary whitespace-nowrap leading-tight rounded-xl">
-                <span className="text-sm uppercase">
-                  <Link to={book._id}>Read more</Link>
-                </span>
+                <Link to={book._id}>
+                  <span className="text-sm uppercase">Read more</span>
+                </Link>
               </p>
             </div>
           </div>
