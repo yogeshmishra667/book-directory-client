@@ -1,15 +1,31 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const baseURI = 'http://localhost:8000/api/v1/books';
+const baseURI = 'http://localhost:8000/api/v1/';
 
 export const apiSlice = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: baseURI }),
-  tagTypes: ['Book'],
+  tagTypes: ['Book', 'User'],
   endpoints: (builder) => ({
+    loginUser: builder.mutation({
+      query: (payload) => ({
+        url: 'users/login',
+        method: 'POST',
+        body: payload,
+      }),
+      invalidatesTags: ['User'],
+    }),
+    signupUser: builder.mutation({
+      query: (payload) => ({
+        url: 'users/signup',
+        method: 'POST',
+        body: payload,
+      }),
+      invalidatesTags: ['User'],
+    }),
     // get all books
     getBooks: builder.query({
       // get: 'http://localhost:8000/api/v1/books'
-      query: () => '/',
+      query: () => 'books/',
       providesTags: ['Book'],
     }),
 
@@ -19,7 +35,7 @@ export const apiSlice = createApi({
 
       query: (id) => {
         return {
-          url: `/${id}`,
+          url: `/books/${id}`,
           params: { id },
         };
       },
@@ -70,7 +86,7 @@ export const apiSlice = createApi({
     // get latest book
     getLatestBooks: builder.query({
       // get: 'http://localhost:8000/api/v1/books/latest-book'
-      query: () => '/latest-book',
+      query: () => '/books/latest-book',
       providesTags: ['Book'],
     }),
     // get best seller books
@@ -83,6 +99,8 @@ export const apiSlice = createApi({
 });
 
 export const {
+  useLoginUserMutation,
+  useSignupUserMutation,
   useGetBooksQuery,
   useGetBookQuery,
   useDeleteBooksMutation,
