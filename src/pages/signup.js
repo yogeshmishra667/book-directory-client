@@ -3,20 +3,12 @@ import bookImg from '../assets/books2.jpg';
 import { useNavigate } from 'react-router-dom';
 import { useLoginUserMutation, useSignupUserMutation } from '../features/apiSlice';
 
-const initialState = {
-  name: '',
-  email: '',
-  password: '',
-  confirmPassword: '',
-};
-
 const Signup = () => {
-  const [formData, setFormData] = useState(initialState);
-  const { name, email, password, confirmPassword } = formData;
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [showRegister, setShowRegister] = useState(false);
-  const handleChange = (event) => {
-    setFormData({ ...formData, [event.target.name]: event.target.value });
-  };
 
   const navigate = useNavigate();
   const [
@@ -40,121 +32,114 @@ const Signup = () => {
   ] = useSignupUserMutation();
 
   const signupHandleSubmit = (event) => {
+    event.preventDefault();
     if (password !== confirmPassword) {
       alert('Passwords do not match');
-    } else {
-      signupUser({ name, email, password });
+      return false;
     }
+    signupUser({ name, email, password, confirmPassword });
   };
-  useEffect(() => {
-    if (signupIsSuccess) {
-      navigate('/login');
-    }
-  }, [signupIsSuccess, navigate]);
 
-  const handleSubmit = async () => {
+  const handleLoginSubmit = async () => {
     if (email && password) {
       await loginUser({ email, password });
     }
   };
 
   useEffect(() => {
-    if (loginIsSuccess) {
+    if (loginIsSuccess || signupIsSuccess) {
       navigate('/');
     }
-  }, [loginIsSuccess, navigate]);
+  }, [loginIsSuccess, signupIsSuccess]);
 
   return (
-    <div className="max-w-full mx-auto h-screen flex bg-white rounded-lg shadow overflow-hidden ">
-      <div className="relative hidden xl:block xl:w-1/2 h-full">
-        <img className="absolute h-auto w-full object-cover" src={bookImg} alt="my book" />
+    <div className="flex h-screen max-w-full mx-auto overflow-hidden bg-white rounded-lg shadow ">
+      <div className="relative hidden h-full xl:block xl:w-1/2">
+        <img className="absolute object-cover w-full h-auto" src={bookImg} alt="my book" />
       </div>
-      <div className="w-full flex items-center xl:w-1/2 ">
-        <div className="p-8 w-full">
+      <div className="flex items-center w-full xl:w-1/2 ">
+        <div className="w-full p-8">
           <form method="post" action="#">
             {!showRegister ? (
-              <h1 className=" text-2xl font-bold">Sign in to your account</h1>
+              <h1 className="text-2xl font-bold ">Sign in to your account</h1>
             ) : (
-              <h1 className=" text-2xl font-bold"> Register Your Account</h1>
+              <h1 className="text-2xl font-bold "> Register Your Account</h1>
             )}
 
             <div>
               {!showRegister ? (
-                <span className="text-gray-600 text-sm">
+                <span className="text-sm text-gray-600">
                   Don't have an account?
                   <a href="#" className="text-blue-500" onClick={() => setShowRegister(true)}>
-                    <span className="text-gray-700 text-sm font-semibold">Sign up</span>
+                    <span className="text-sm font-semibold text-gray-700">Sign up</span>
                   </a>
                 </span>
               ) : (
-                <span className="text-gray-600 text-sm">
+                <span className="text-sm text-gray-600">
                   Already have an account?
                   <a href="#" className="text-blue-500" onClick={() => setShowRegister(false)}>
-                    <span className="text-gray-700 text-sm font-semibold">Sign in</span>
+                    <span className="text-sm font-semibold text-gray-700">Sign in</span>
                   </a>
                 </span>
               )}
             </div>
             {showRegister && (
-              <div className="mb-4 mt-6">
-                <label className="block text-gray-700 text-sm font-semibold mb-2" htmlFor="email">
+              <div className="mt-6 mb-4">
+                <label className="block mb-2 text-sm font-semibold text-gray-700" htmlFor="email">
                   Name
                 </label>
                 <input
-                  className="text-sm appearance-none rounded w-full py-2 px-3 text-gray-700 bg-gray-200 leading-tight focus:outline-none focus:shadow-outline h-10"
+                  className="w-full h-10 px-3 py-2 text-sm leading-tight text-gray-700 bg-gray-200 rounded appearance-none focus:outline-none focus:shadow-outline"
                   id="name"
                   type="text"
                   name="name"
                   value={name}
-                  onChange={handleChange}
+                  onChange={(event) => setName(event.target.value)}
                   placeholder="Your Name"
                 />
               </div>
             )}
-            <div className="mb-4 mt-6">
-              <label className="block text-gray-700 text-sm font-semibold mb-2" htmlFor="name">
+            <div className="mt-6 mb-4">
+              <label className="block mb-2 text-sm font-semibold text-gray-700" htmlFor="name">
                 Email
               </label>
               <input
-                className="text-sm appearance-none rounded w-full py-2 px-3 text-gray-700 bg-gray-200 leading-tight focus:outline-none focus:shadow-outline h-10"
-                id="email"
-                type="email"
+                className="w-full h-10 px-3 py-2 text-sm leading-tight text-gray-700 bg-gray-200 rounded appearance-none focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Your email address"
                 defaultValue={email}
-                onChange={handleChange}
-                placeholder="Your email address"
+                onChange={(event) => setEmail(event.target.value)}
               />
             </div>
-            <div className="mb-6 mt-6">
-              <label className="block text-gray-700 text-sm font-semibold mb-2" htmlFor="password">
+            <div className="mt-6 mb-6">
+              <label className="block mb-2 text-sm font-semibold text-gray-700" htmlFor="password">
                 Password
               </label>
               <input
-                className="text-sm bg-gray-200 appearance-none rounded w-full py-2 px-3 text-gray-700 mb-1 leading-tight focus:outline-none focus:shadow-outline h-10"
+                className="w-full h-10 px-3 py-2 mb-1 text-sm leading-tight text-gray-700 bg-gray-200 rounded appearance-none focus:outline-none focus:shadow-outline"
                 id="password"
                 type="password"
                 defaultValue={password}
-                onChange={handleChange}
+                onChange={(event) => setPassword(event.target.value)}
                 placeholder="Your password"
               />
             </div>
             {showRegister && (
-              <div className="mb-6 mt-6">
+              <div className="mt-6 mb-6">
                 <label
-                  className="block text-gray-700 text-sm font-semibold mb-2"
+                  className="block mb-2 text-sm font-semibold text-gray-700"
                   htmlFor="confirmPassword"
                 >
                   Confirm Password
                 </label>
                 <input
-                  className="text-sm bg-gray-200 appearance-none rounded w-full py-2 px-3 text-gray-700 mb-1 leading-tight focus:outline-none focus:shadow-outline h-10"
+                  className="w-full h-10 px-3 py-2 mb-1 text-sm leading-tight text-gray-700 bg-gray-200 rounded appearance-none focus:outline-none focus:shadow-outline"
                   id="confirmPassword"
                   type="password"
                   defaultValue={confirmPassword}
-                  onChange={handleChange}
+                  onChange={(event) => setConfirmPassword(event.target.value)}
                   placeholder="Confirm your password"
                 />
                 <a
-                  className="inline-block align-baseline text-sm text-gray-600 hover:text-gray-800"
+                  className="inline-block text-sm text-gray-600 align-baseline hover:text-gray-800"
                   href="/forgot"
                 >
                   Forgot Password?
@@ -165,20 +150,19 @@ const Signup = () => {
             <div className="flex w-full mt-8">
               {!showRegister ? (
                 <button
-                  className="w-full bg-gray-800 hover:bg-grey-900 text-white text-sm py-2 px-4 font-semibold rounded focus:outline-none focus:shadow-outline h-10"
+                  className="w-full h-10 px-4 py-2 text-sm font-semibold text-white bg-gray-800 rounded hover:bg-grey-900 focus:outline-none focus:shadow-outline"
                   type="button"
-                  onClick={() => handleSubmit()}
+                  onClick={() => handleLoginSubmit()}
                 >
                   Sign in
                 </button>
               ) : (
                 <button
-                  className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline h-10"
+                  className="w-full h-10 px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline"
                   type="button"
                   onClick={() => signupHandleSubmit()}
                 >
-                  {' '}
-                  Sign up{' '}
+                  Sign up
                 </button>
               )}
             </div>
