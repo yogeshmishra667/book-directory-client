@@ -5,6 +5,7 @@ import { Link as LinkRouter } from 'react-router-dom';
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
+
   const handleClick = () => setNav(!nav);
   return (
     <div className="bg-transparent w-screen z-10  drop-shadow-lg mt-8">

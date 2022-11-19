@@ -10,6 +10,7 @@ export const apiSlice = createApi({
       query: (payload) => ({
         url: 'users/login',
         method: 'POST',
+
         body: payload,
       }),
       invalidatesTags: ['User'],
@@ -18,6 +19,7 @@ export const apiSlice = createApi({
       query: (payload) => ({
         url: 'users/signup',
         method: 'POST',
+
         body: payload,
       }),
       invalidatesTags: ['User'],

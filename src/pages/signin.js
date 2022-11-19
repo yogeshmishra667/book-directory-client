@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import bookImg from '../assets/books2.jpg';
 import { useNavigate } from 'react-router-dom';
 import { useLoginUserMutation } from '../features/apiSlice';
+import cookie from 'js-cookie';
 
 const Signin = () => {
   const [email, setEmail] = useState('');
@@ -9,6 +10,9 @@ const Signin = () => {
 
   const navigate = useNavigate();
   const [loginUser, { data, isLoading, isError, isSuccess }] = useLoginUserMutation();
+  cookie.set('user', JSON.stringify(data)); //save data in cookie
+  // const user = data?.data?.user;
+  // const name = user?.name;
 
   const handleLoginSubmit = async () => {
     if (email && password) {

@@ -36,7 +36,7 @@ const BookDetails = () => {
                 <p className="font-bold">{data.data.book.language}</p>
               </div>
             </div>
-            <p className="py-4">{data.data.book.summary}</p>
+            <p className="py-4 line-clamp-9">{data.data.book.summary}</p>
             <div className="grid md:grid-cols-2 items-center justify-around space-y-4">
               <p>
                 <span className="font-bold">Price: </span>₹{data.data.book.price}/-

@@ -4,7 +4,7 @@ import BestSeller from './pages/bestSeller';
 import GetTopFive from './pages/getTopFive';
 import GetLatestBook from './pages/latestBook.js';
 import Delete from './pages/delete';
-import { SignupForm } from './pages/form';
+
 import Spinner from './pages/spinner';
 import Signin from './pages/signin';
 import Signup from './pages/signup';
@@ -22,6 +22,7 @@ function App() {
         <Route path="/" element={<Index />} />
         <Route path="/:id" element={<BookDetails />} />
         <Route path="/moreBooks" element={<MoreBooks />} />
+        <Route path="/moreBooks/:id" element={<BookDetails />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
       </Routes>
