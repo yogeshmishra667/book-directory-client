@@ -36,9 +36,9 @@ const Navbar = () => {
         </ul>
 
         <div className="hidden md:flex pr-4">
-          {/* <LinkRouter to="/signin">
+          <LinkRouter to="/signin">
             <button className="border-none bg-transparent text-black mr-4 py-3">Signin</button>
-          </LinkRouter> */}
+          </LinkRouter>
           <LinkRouter to="/signup">
             <button className="px-8 py-3">Register</button>
           </LinkRouter>
@@ -72,9 +72,9 @@ const Navbar = () => {
         </li>
 
         <div className="flex flex-col my-4">
-          {/* <LinkRouter to="/signin">
+          <LinkRouter to="/signin">
             <button className="bg-transparent text-indigo-600 px-8 py-3 mb-4">Signin</button>
-          </LinkRouter> */}
+          </LinkRouter>
           <LinkRouter to="/signup">
             <button className="px-8 py-3">Signup</button>
           </LinkRouter>
