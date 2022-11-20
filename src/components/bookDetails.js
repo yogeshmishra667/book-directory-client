@@ -3,6 +3,7 @@ import mainImg from '../assets/the-alchemist.jpeg';
 import { useParams } from 'react-router-dom';
 import { apiSlice } from '../features/apiSlice';
 import Spinner from '../pages/spinner';
+import PayButton from '../pages/payButton';
 
 const BookDetails = () => {
   let book;
@@ -41,7 +42,7 @@ const BookDetails = () => {
               <p>
                 <span className="font-bold">Price: </span>₹{data.data.book.price}/-
               </p>
-              <button className="inline-block py-4">Buy Now</button>
+              <PayButton book={data.data.book} />
             </div>
           </div>
         </div>

@@ -7,10 +7,12 @@ import cookie from 'js-cookie';
 const Signin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [userData, setUserData] = useState(null);
 
   const navigate = useNavigate();
   const [loginUser, { data, isLoading, isError, isSuccess }] = useLoginUserMutation();
-  cookie.set('user', JSON.stringify(data)); //save data in cookie
+  setUserData(data);
+
   // const user = data?.data?.user;
   // const name = user?.name;
 

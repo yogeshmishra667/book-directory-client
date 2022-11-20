@@ -1,10 +1,9 @@
 import React from 'react';
 import { useLoginUserMutation } from '../features/apiSlice';
 import Navbar from '../components/Navbar';
+import { useSelector } from 'react-redux';
 
 const HeroPage = () => {
-  const { data, isLoading, isError, isSuccess } = useLoginUserMutation();
-  console.log(data);
   return (
     <div name="home" className="w-full h-screen flex flex-col justify-between">
       <Navbar />

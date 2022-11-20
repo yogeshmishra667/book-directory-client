@@ -54,6 +54,15 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: ['Book'],
     }),
+    payment: builder.query({
+      query: (id) => {
+        return {
+          url: `books/create-checkout-session/${id}`,
+        };
+      },
+      providesTags: ['Book'],
+    }),
+
     // add new Transaction
     updateBook: builder.mutation({
       query: (payload) => ({
@@ -101,6 +110,7 @@ export const apiSlice = createApi({
 });
 
 export const {
+  usePaymentQuery,
   useLoginUserMutation,
   useSignupUserMutation,
   useGetBooksQuery,

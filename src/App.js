@@ -14,6 +14,8 @@ import MainBook from './pages/mainBook';
 import Index from './pages/index';
 import BookDetails from './components/bookDetails';
 import MoreBooks from './pages/moreBooks';
+import Success from './pages/success';
+import Failed from './pages/failed';
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
         <Route path="/moreBooks/:id" element={<BookDetails />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/success" element={<Success />} />
+        <Route path="/failed" element={<Failed />} />
       </Routes>
     </div>
   );
