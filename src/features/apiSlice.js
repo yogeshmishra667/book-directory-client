@@ -106,6 +106,12 @@ export const apiSlice = createApi({
       query: () => '/bestSeller',
       providesTags: ['Book'],
     }),
+    // get all users
+    getUsers: builder.query({
+      // get: 'http://localhost:8000/api/v1/users'
+      query: () => 'users',
+      providesTags: ['User'],
+    }),
   }),
 });
 
@@ -113,6 +119,7 @@ export const {
   usePaymentQuery,
   useLoginUserMutation,
   useSignupUserMutation,
+  useGetUsersQuery,
   useGetBooksQuery,
   useGetBookQuery,
   useDeleteBooksMutation,

@@ -15,7 +15,7 @@ const PayButton = ({ book }) => {
   };
   return (
     <div>
-      <button onClick={() => handleCheckout()} className="inline-block py-4">
+      <button onClick={() => handleCheckout()} className="inline-block py-2 px-8">
         Buy Now
       </button>
     </div>

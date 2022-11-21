@@ -28,7 +28,7 @@ const GetBooks = ({ book }) => {
                 {book.title}
               </h2>
               <p
-                className="mt-2 text-sm text-gray-800 line-clamp-1"
+                className="mt-2 text-sm text-gray-800 line-clamp-3"
                 title="New York, NY 10004, United States"
               >
                 {book.summary}

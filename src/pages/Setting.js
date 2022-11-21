@@ -8,6 +8,7 @@ import {
   PlusIcon,
 } from '@heroicons/react/24/solid';
 import AccountSetting from './AccountSetting';
+import { Link } from 'react-router-dom';
 import AdminBook from './Admin/AdminBook';
 import AdminUser from './Admin/AdminUser';
 import Signin from './signin';
@@ -18,9 +19,7 @@ const Setting = () => {
     <div className="w-full flex flex-col h-full mx-auto ">
       <div className="grid grid-cols-5">
         <div className="bg-[#D9D9D9] h-screen self-start sticky top-0 col-span-1">
-          <div className="flex justify-center mt-8 mb-4 font-bold">
-            Yo-Books
-          </div>
+          <div className="flex justify-center mt-8 mb-4 font-bold">Yo-Books</div>
           <ul>
             <li>
               <div className="flex items-center justify-evenly md:justify-start">
@@ -53,7 +52,9 @@ const Setting = () => {
                 <span className="">
                   <BookOpenIcon className="w-8 md:w-5" />
                 </span>
-                <p className="ml-3 hidden md:flex">Manage Books</p>
+                <Link to="/admin/manageBooks">
+                  <p className="ml-3 hidden md:flex">Manage Books</p>
+                </Link>
               </div>
             </li>
             <li>
@@ -61,7 +62,9 @@ const Setting = () => {
                 <span className="">
                   <UsersIcon className="w-8 md:w-5" />
                 </span>
-                <p className="ml-3 hidden md:flex">Manage Users</p>
+                <Link to="/admin/manageUsers">
+                  <p className="ml-3 hidden md:flex">Manage Users</p>
+                </Link>
               </div>
             </li>
           </ul>
@@ -80,7 +83,9 @@ const Setting = () => {
           </div>
         </div>
         <div className="col-span-4 flex justify-center mx-auto mt-16">
-          <div className="w-[1000px]"><AccountSetting /></div>
+          <div className="w-[1000px]">
+            <AccountSetting />
+          </div>
         </div>
       </div>
     </div>

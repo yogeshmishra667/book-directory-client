@@ -14,6 +14,9 @@ import MainBook from './pages/mainBook';
 import Index from './pages/index';
 import BookDetails from './components/bookDetails';
 import MoreBooks from './pages/moreBooks';
+import ManageUsers from './pages/Admin/AdminUser';
+import ManageBooks from './pages/Admin/AdminBook';
+import AccountSetting from './pages/Setting';
 import Success from './pages/success';
 import Failed from './pages/failed';
 
@@ -27,6 +30,9 @@ function App() {
         <Route path="/moreBooks/:id" element={<BookDetails />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/admin" element={<AccountSetting />} />
+        <Route path="/admin/manageUsers" element={<ManageUsers />} />
+        <Route path="/admin/manageBooks" element={<ManageBooks />} />
         <Route path="/success" element={<Success />} />
         <Route path="/failed" element={<Failed />} />
       </Routes>

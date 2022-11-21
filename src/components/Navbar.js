@@ -37,6 +37,9 @@ const Navbar = () => {
         </ul>
 
         <div className="hidden md:flex pr-4">
+          <LinkRouter to="/admin">
+            <button className="border-none bg-transparent text-black mr-4 py-3">Admin</button>
+          </LinkRouter>
           <LinkRouter to="/signin">
             <button className="border-none bg-transparent text-black mr-4 py-3">Signin</button>
           </LinkRouter>
