@@ -1,12 +1,23 @@
-import React from 'react';
-import { useLoginUserMutation } from '../features/apiSlice';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import { useSelector } from 'react-redux';
+import FetchAPIData from '../utils/FetchAPIData';
 
 const HeroPage = () => {
+  const [userData, setUserData] = useState(null);
+
+  const getUserData = async () => {
+    const userDataRaw = await FetchAPIData("users/getUserData", "get");
+    setUserData(userDataRaw.data.data);
+  }
+
+  useEffect(() => {
+    getUserData();
+  }, []);
+
   return (
     <div name="home" className="w-full h-screen flex flex-col justify-between">
-      <Navbar />
+      <Navbar userData={userData} />
       <div className=" grid md:grid-cols-2 max-w-[1240px] mx-auto h-screen">
         <div className="flex flex-col justify-center md:items-start w-full">
           <h1 className="py-3 text-5xl md:text-7xl font-bold">To Succeed you must be read</h1>
