@@ -3,6 +3,7 @@ import bookImg from '../assets/books2.jpg';
 import { useNavigate, Link } from 'react-router-dom';
 import { useLoginUserMutation } from '../features/apiSlice';
 import cookie from 'js-cookie';
+import { setCookie } from '../utils/CookiesHelper';
 
 const Signin = () => {
   const [email, setEmail] = useState('');
@@ -13,8 +14,8 @@ const Signin = () => {
 
   const handleLoginSubmit = async () => {
     if (email && password) {
-      let data = await loginUser({ email, password });
-      console.log(data);
+      const data = await loginUser({ email, password });
+      setCookie('user-token', data.data.token);
     }
   };
 
