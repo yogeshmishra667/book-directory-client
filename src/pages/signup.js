@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import bookImg from '../assets/books2.jpg';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useLoginUserMutation, useSignupUserMutation } from '../features/apiSlice';
 
 const Signup = () => {
