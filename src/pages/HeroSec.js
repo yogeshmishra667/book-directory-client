@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
-import { useSelector } from 'react-redux';
 import FetchAPIData from '../utils/FetchAPIData';
 
 const HeroPage = () => {
   const [userData, setUserData] = useState(null);
 
   const getUserData = async () => {
-    const userDataRaw = await FetchAPIData("users/getUserData", "get");
+    const userDataRaw = await FetchAPIData('users/getUserData', 'get');
     setUserData(userDataRaw.data.data);
-  }
+  };
 
   useEffect(() => {
     getUserData();

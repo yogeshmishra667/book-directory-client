@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import bookImg from '../assets/books2.jpg';
 import { useNavigate, Link } from 'react-router-dom';
 import { useLoginUserMutation } from '../features/apiSlice';
-import cookie from 'js-cookie';
 import { setCookie } from '../utils/CookiesHelper';
 
 const Signin = () => {

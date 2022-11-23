@@ -2,11 +2,20 @@ import React, { useState } from 'react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
 import { Link as LinkScroll, animateScroll as scroll } from 'react-scroll';
 import { Link as LinkRouter } from 'react-router-dom';
+import FetchAPIData from '../utils/FetchAPIData';
+import { setCookie } from '../utils/CookiesHelper';
 
 const Navbar = ({ userData }) => {
   const [nav, setNav] = useState(false);
 
   const handleClick = () => setNav(!nav);
+
+  //for the logout
+  const logoutUser = async () => {
+    await FetchAPIData('users/logout', 'get');
+    setCookie('user-token', 'loggedout');
+    window.location.reload();
+  };
 
   return (
     <div className="bg-transparent w-screen z-10  drop-shadow-lg mt-8">
@@ -38,27 +47,28 @@ const Navbar = ({ userData }) => {
         </ul>
 
         <div className="hidden md:flex pr-4">
-          {
-            userData ? (
-              <>
-                <LinkRouter to="/admin">
-                  <button className="border-none bg-transparent text-black mr-4 py-3">{userData.name}</button>
-                </LinkRouter>
-                <LinkRouter to="/signup">
-                  <button className="px-8 py-3 bg-red-800">Logout</button>
-                </LinkRouter>
-              </>
-            ) : (
-              <>
-                <LinkRouter to="/signin">
-                  <button className="border-none bg-transparent text-black mr-4 py-3">Signin</button>
-                </LinkRouter>
-                <LinkRouter to="/signup">
-                  <button className="px-8 py-3">Register</button>
-                </LinkRouter>
-              </>
-            )
-          }
+          {userData ? (
+            <>
+              <LinkRouter to="/admin">
+                <button className="border-none bg-transparent text-black mr-4 py-3">
+                  {userData.name}
+                </button>
+              </LinkRouter>
+
+              <button onClick={() => logoutUser()} className="px-8 py-3 bg-red-800">
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <LinkRouter to="/signin">
+                <button className="border-none bg-transparent text-black mr-4 py-3">Signin</button>
+              </LinkRouter>
+              <LinkRouter to="/signup">
+                <button className="px-8 py-3">Register</button>
+              </LinkRouter>
+            </>
+          )}
         </div>
         {/* this code work when screen size reduce ⬇️*/}
         <div className="md:hidden mr-4" onClick={handleClick}>
