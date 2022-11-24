@@ -6,6 +6,14 @@ export const apiSlice = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: baseURI }),
   tagTypes: ['Book', 'User'],
   endpoints: (builder) => ({
+    updateMe: builder.mutation({
+      query: (payload) => ({
+        url: 'users/updateMe',
+        method: 'PATCH',
+        body: payload,
+      }),
+      invalidatesTags: ['User'],
+    }),
     loginUser: builder.mutation({
       query: (payload) => ({
         url: 'users/login',
@@ -117,6 +125,7 @@ export const apiSlice = createApi({
 
 export const {
   usePaymentQuery,
+  useUpdateMeMutation,
   useLoginUserMutation,
   useSignupUserMutation,
   useGetUsersQuery,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Cog6ToothIcon,
   BookOpenIcon,
@@ -14,7 +14,13 @@ import AdminUser from './Admin/AdminUser';
 import Signin from './signin';
 import AddBook from './Admin/AddBook';
 import UpdateBook from './Admin/UpdateBook';
+import { useSelector } from 'react-redux';
+import { getCookie } from '../utils/CookiesHelper';
+import FetchAPIData from '../utils/FetchAPIData';
+
 const Setting = () => {
+  //const userDataRaw = await FetchAPIData('users/getUserData', 'get');
+
   return (
     <div className="w-full flex flex-col h-full mx-auto ">
       <div className="grid grid-cols-5">
@@ -46,7 +52,8 @@ const Setting = () => {
               </div>
             </li>
             <h1 className=" flex justify-center my-4 font-bold">Admin</h1>
-
+            {/* {userDataRaw.data.data.role === 'admin' ? (
+              <> */}
             <li>
               <div className="flex items-center justify-evenly md:justify-start">
                 <span className="">
@@ -67,6 +74,8 @@ const Setting = () => {
                 </Link>
               </div>
             </li>
+            {/* </>
+            ) : null} */}
           </ul>
           <div className="flex items-end justify-center h-[46%] ">
             <div className=" p-4 mt-12">

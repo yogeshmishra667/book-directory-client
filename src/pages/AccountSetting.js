@@ -1,6 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useUpdateMeMutation } from '../features/apiSlice';
+import FetchAPIData from '../utils/FetchAPIData';
+import { setCookie } from '../utils/CookiesHelper';
 
 const UserSetting = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [photo, setPhoto] = useState('');
+  //const [updateMe, { data, isLoading, isSuccess }] = useUpdateMeMutation();
+
+  const updateMeData = async (event) => {
+    const data = await FetchAPIData('users/updateMe', 'patch', { email, password, photo });
+    setCookie('user-token', 'loggedout');
+    window.location.href = '/';
+    //updateMe({ email, password, photo });
+  };
+  useEffect(() => {}, []);
+
   return (
     <div>
       <div className="w-full flex items-center xl:w-1/2 ">
@@ -9,10 +25,7 @@ const UserSetting = () => {
 
           <form method="post" action="#" onSubmit="return false">
             <div className="mb-4 mt-6">
-              <label
-                className="block text-gray-700 text-sm font-semibold mb-2"
-                htmlFor="email"
-              >
+              <label className="block text-gray-700 text-sm font-semibold mb-2" htmlFor="email">
                 Email
               </label>
               <input
@@ -20,13 +33,12 @@ const UserSetting = () => {
                 id="email"
                 type="text"
                 placeholder="Your email address"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
               />
             </div>
             <div className="mb-6 mt-6">
-              <label
-                className="block text-gray-700 text-sm font-semibold mb-2"
-                htmlFor="password"
-              >
+              <label className="block text-gray-700 text-sm font-semibold mb-2" htmlFor="password">
                 Password
               </label>
               <input
@@ -34,6 +46,8 @@ const UserSetting = () => {
                 id="password"
                 type="password"
                 placeholder="Your password"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
               />
             </div>
             <label
@@ -47,17 +61,17 @@ const UserSetting = () => {
               aria-described-by="file_input_help"
               id="file_input"
               type="file"
+              accept="image/*"
+              onChange={(event) => setPhoto(event.target.files[0])}
             />
-            <p
-              class="mt-1 text-sm text-gray-500 dark:text-gray-300"
-              id="file_input_help"
-            >
+            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">
               PNG, JPG or GIF (MAX. 500x500px).
             </p>
             <div className="flex w-full mt-10 justify-end">
               <button
                 className=" bg-[#A1CF6B] text-[#2b2a2a] hover:text-black-200 border-none text-sm py-2 px-5 font-semibold rounded focus:outline-none focus:shadow-outline"
                 type="button"
+                onClick={() => updateMeData()}
               >
                 Save Setting
               </button>
@@ -71,10 +85,7 @@ const UserSetting = () => {
           <p className="text-3xl mb-8">Change Password</p>
           <form method="post" action="#" onSubmit="return false">
             <div className="mb-4 mt-6">
-              <label
-                className="block text-gray-700 text-sm font-semibold mb-2"
-                htmlFor="email"
-              >
+              <label className="block text-gray-700 text-sm font-semibold mb-2" htmlFor="email">
                 Password
               </label>
               <input
@@ -85,10 +96,7 @@ const UserSetting = () => {
               />
             </div>
             <div className="mb-6 mt-6">
-              <label
-                className="block text-gray-700 text-sm font-semibold mb-2"
-                htmlFor="password"
-              >
+              <label className="block text-gray-700 text-sm font-semibold mb-2" htmlFor="password">
                 Confirm Password
               </label>
               <input
