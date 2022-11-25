@@ -4,13 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import { useDeleteBooksMutation } from '../features/apiSlice';
 import Swal from 'sweetalert2';
 
+const baseURL = `http://localhost:3000/`;
 const GetBooks = ({ book }) => {
   return (
     <div className="relative w-full">
       <Link to={`/${book._id}`}>
         <span className="relative inline-block duration-300 ease-in-out transition-transform transform hover:-translate-y-2 w-full">
           <div className="shadow p-4 rounded-lg bg-white">
-            <div className="flex justify-center relative rounded-lg overflow-hidden h-52">
+            <div className="flex justify-center relative rounded-lg overflow-hidden h-52" style={{ backgroundImage: `url('${baseURL}/img/books/${book.bookCover}')` }}>
               <div className="transition-transform duration-500 transform ease-in-out hover:scale-110 w-full">
                 <div className="absolute inset-0 bg-black opacity-10"></div>
               </div>
