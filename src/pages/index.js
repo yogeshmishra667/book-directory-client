@@ -6,10 +6,10 @@ import MainBook from '../pages/mainBook';
 import MainBooks from './HeroMain';
 import Footer from '../components/footer';
 
-const Index = () => {
+const Index = ({ userData }) => {
   return (
     <div>
-      <HeroPage />
+      <HeroPage userData={userData} />
       <MainBooks />
       <About />
       <Contact />
