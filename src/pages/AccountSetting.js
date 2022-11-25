@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useUpdateMeMutation } from '../features/apiSlice';
 import FetchAPIData from '../utils/FetchAPIData';
-import { setCookie } from '../utils/CookiesHelper';
+import { getCookie, setCookie } from '../utils/CookiesHelper';
+import axios from 'axios';
+
+const BASE_URL = 'http://localhost:8000/api/v1/';
+const accessToken = 'Bearer ' + getCookie('user-token');
 
 const UserSetting = () => {
   const [email, setEmail] = useState('');
@@ -11,13 +15,32 @@ const UserSetting = () => {
   //const [updateMe, { data, isLoading, isSuccess }] = useUpdateMeMutation();
 
   const updateMeData = async () => {
-    await FetchAPIData('users/updateMe', 'patch', { email, password, photo });
+    await FetchAPIData('users/updateMe', 'patch', { email, password });
     setCookie('user-token', 'loggedout');
     window.location.href = '/';
     //updateMe({ email, password, photo });
   };
   console.log(AdminData);
-  useEffect(() => {}, []);
+
+  const saveProfilePic = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append("photo", photo);
+    try {
+      const { data } = await axios({
+        method: 'patch',
+        data: formData,
+        url: `${BASE_URL}users/updateMe`,
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: accessToken,
+        },
+      });
+      console.log(data);
+    } catch (error) {
+      console.log(error.response);
+    }
+  }
 
   return (
     <div>
@@ -52,6 +75,24 @@ const UserSetting = () => {
                 onChange={(event) => setPassword(event.target.value)}
               />
             </div>
+            <div className="flex w-full mt-10 justify-end">
+              <button
+                className=" bg-[#A1CF6B] text-[#2b2a2a] hover:text-black-200 border-none text-sm py-2 px-5 font-semibold rounded focus:outline-none focus:shadow-outline"
+                type="button"
+                onClick={() => updateMeData()}
+              >
+                Save Setting
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      {/* Change Profile Picture */}
+      <div className="w-full flex items-center xl:w-1/2 ">
+        <div className="p-8 w-full">
+          <p className="text-3xl mb-8">Change Profile Picture</p>
+          <form>
             <label
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               for="file_input"
@@ -72,10 +113,10 @@ const UserSetting = () => {
             <div className="flex w-full mt-10 justify-end">
               <button
                 className=" bg-[#A1CF6B] text-[#2b2a2a] hover:text-black-200 border-none text-sm py-2 px-5 font-semibold rounded focus:outline-none focus:shadow-outline"
-                type="button"
-                onClick={() => updateMeData()}
+                type="submit"
+                onClick={saveProfilePic}
               >
-                Save Setting
+                Save Picture
               </button>
             </div>
           </form>
