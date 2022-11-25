@@ -5,17 +5,7 @@ import alchemist from '../assets/the-alchemist.jpeg';
 import cantHurt from '../assets/cant hurt me.jpg';
 import ikigai from '../assets/atomic-habits.png';
 
-const HeroPage = () => {
-  const [userData, setUserData] = useState(null);
-
-  const getUserData = async () => {
-    const userDataRaw = await FetchAPIData('users/getUserData', 'get');
-    setUserData(userDataRaw.data.data);
-  };
-
-  useEffect(() => {
-    getUserData();
-  }, []);
+const HeroPage = ({ userData }) => {
 
   return (
     <div name="home" className="w-full h-screen flex flex-col justify-between">

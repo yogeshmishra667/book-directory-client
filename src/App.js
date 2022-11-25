@@ -19,18 +19,31 @@ import ManageBooks from './pages/Admin/AdminBook';
 import AccountSetting from './pages/Setting';
 import Success from './pages/success';
 import Failed from './pages/failed';
+import { useEffect, useState } from 'react';
+import FetchAPIData from './utils/FetchAPIData';
 
 function App() {
+  const [userData, setUserData] = useState(null);
+
+  const getUserData = async () => {
+    const userDataRaw = await FetchAPIData('users/getUserData', 'get');
+    setUserData(userDataRaw.data.data);
+  };
+
+  useEffect(() => {
+    getUserData();
+  }, []);
+
   return (
     <div className="">
       <Routes>
-        <Route path="/" element={<Index />} />
+        <Route path="/" element={<Index userData={userData} />} />
         <Route path="/:id" element={<BookDetails />} />
         <Route path="/moreBooks" element={<MoreBooks />} />
         <Route path="/moreBooks/:id" element={<BookDetails />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/admin" element={<AccountSetting />} />
+        <Route path="/admin" element={<AccountSetting userData={userData} />} />
         <Route path="/admin/manageUsers" element={<ManageUsers />} />
         <Route path="/admin/manageBooks" element={<ManageBooks />} />
         <Route path="/success" element={<Success />} />
