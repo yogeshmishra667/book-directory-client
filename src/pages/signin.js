@@ -15,15 +15,9 @@ const Signin = () => {
     if (email && password) {
       const data = await loginUser({ email, password });
       setCookie('user-token', data.data.token);
+      window.location = "/"
     }
   };
-
-  useEffect(() => {
-    if (isSuccess) {
-      navigate('/');
-      console.log('login successful');
-    }
-  }, [isSuccess]);
 
   return (
     <div className="max-w-full mx-auto h-screen flex bg-white rounded-lg shadow overflow-hidden ">
