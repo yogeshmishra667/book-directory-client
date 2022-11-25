@@ -1,14 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import mainImg from '../assets/the-alchemist.jpeg';
 import { useParams } from 'react-router-dom';
 import { apiSlice } from '../features/apiSlice';
 import Spinner from '../pages/spinner';
 import PayButton from '../pages/payButton';
+import FetchAPIData from '../utils/FetchAPIData';
 
 const BookDetails = () => {
   let book;
   let { id } = useParams();
   const { data, isFetching, isSuccess, isError } = apiSlice.useGetBookQuery(id);
+
+  const [userData, setUserData] = useState(null);
+
+  const getUserData = async () => {
+    const userDataRaw = await FetchAPIData('users/getUserData', 'get');
+    setUserData(userDataRaw.data.data);
+  };
+
+  useEffect(() => {
+    getUserData();
+  }, []);
   // const bookData = data.data.book;
 
   if (isFetching) {
@@ -42,7 +54,7 @@ const BookDetails = () => {
               <p>
                 <span className="font-bold">Price: </span>₹{data.data.book.price}/-
               </p>
-              <PayButton book={data.data.book} />
+              {userData ? <PayButton book={data.data.book} /> : null}
             </div>
           </div>
         </div>

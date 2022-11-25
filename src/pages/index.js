@@ -4,6 +4,7 @@ import About from '../pages/About';
 import Contact from '../pages/Contact';
 import MainBook from '../pages/mainBook';
 import MainBooks from './HeroMain';
+import Footer from '../components/footer';
 
 const Index = () => {
   return (
@@ -12,6 +13,7 @@ const Index = () => {
       <MainBooks />
       <About />
       <Contact />
+      <Footer />
     </div>
   );
 };

@@ -7,14 +7,16 @@ const UserSetting = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [photo, setPhoto] = useState('');
+  const [AdminData, setAdminData] = useState(null);
   //const [updateMe, { data, isLoading, isSuccess }] = useUpdateMeMutation();
 
-  const updateMeData = async (event) => {
-    const data = await FetchAPIData('users/updateMe', 'patch', { email, password, photo });
+  const updateMeData = async () => {
+    await FetchAPIData('users/updateMe', 'patch', { email, password, photo });
     setCookie('user-token', 'loggedout');
     window.location.href = '/';
     //updateMe({ email, password, photo });
   };
+  console.log(AdminData);
   useEffect(() => {}, []);
 
   return (

@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import FetchAPIData from '../utils/FetchAPIData';
+import alchemist from '../assets/the-alchemist.jpeg';
+import cantHurt from '../assets/cant hurt me.jpg';
+import ikigai from '../assets/atomic-habits.png';
 
 const HeroPage = () => {
   const [userData, setUserData] = useState(null);
@@ -26,10 +29,16 @@ const HeroPage = () => {
           </p>
           <button className="p-3 mt-8">Explore Now</button>
         </div>
-        <div className="flex w-full px-2 py-1 items-center justify-around ">
-          <div className=" bg-slate-400  px-16  py-20 rounded-lg"></div>
-          <div className=" bg-slate-400  px-16  py-20 rounded-lg"></div>
-          <div className=" bg-slate-400 px-16  py-20 rounded-lg"></div>
+        <div className="flex w-full items-center justify-around">
+          <div className="rounded-lg w-80 h-94 border-8 border-[#BC78EC] ml-8 shadow-xl">
+            <img src={alchemist} alt="alchemist" />
+          </div>
+          <div className="rounded-lg w-80 h-94 border-8 ml-8 border-[#BC78EC] shadow-xl">
+            <img src={cantHurt} alt="cant hurt me" />
+          </div>
+          <div className="rounded-lg w-80 h-94 border-8 ml-8 border-[#BC78EC] shadow-xl">
+            <img src={ikigai} alt="ikigai" />
+          </div>
         </div>
       </div>
     </div>

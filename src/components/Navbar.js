@@ -55,7 +55,7 @@ const Navbar = ({ userData }) => {
                 </button>
               </LinkRouter>
 
-              <button onClick={() => logoutUser()} className="px-8 py-3 bg-red-800">
+              <button onClick={() => logoutUser()} className="px-8 py-3 bg-blue-600">
                 Logout
               </button>
             </>

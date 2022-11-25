@@ -1,9 +1,9 @@
 import React from 'react';
-import mainImg from '../assets/AH.jpeg';
+import mainImg from '../assets/admin.jpg';
 
 const About = () => {
   return (
-    <div name="about" className="w-full justify-between pb-24">
+    <div name="about" className="w-full justify-between h-screen">
       <div className="flex py-16 justify-center font-black text-3xl">
         <h1>About Us</h1>
       </div>
@@ -22,7 +22,9 @@ const About = () => {
             "knowing is not enough, we must apply".
           </p>
           <button className="bg-[#A1CF6B] text-black-300 border-none border-black px-8 py-3 mt-8">
-            Download CV
+            <a href="https://linktr.ee/yogi.js" target="_blank">
+              Download CV
+            </a>
           </button>
         </div>
       </div>

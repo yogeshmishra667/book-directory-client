@@ -11,8 +11,12 @@ const Footer = () => {
                 Yo-Books
               </h2>
               <p>
-                the alchemist is the best author i ever read the book and i am
-                glad to read his books
+                Sometimes the best solution is the easiest solution, the default solution. And that
+                is Yo-Books. looks at home everywhere. It has a clean, minimalist appearance that is
+                a joy to use. It is a great choice for any website. People are seemingly split on
+                whether physical books or digital books are better, but there’s no arguing that
+                books are much more at home on a digital device rather than a half dozen cassettes
+                or CDs.
               </p>
             </div>
             <div class="lg:w-1/4 md:w-1/2 w-full px-4">
@@ -54,10 +58,7 @@ const Footer = () => {
               </h2>
               <div class="flex xl:flex-nowrap md:flex-nowrap lg:flex-wrap flex-wrap justify-center items-end md:justify-start">
                 <div class="relative w-40 sm:w-auto xl:mr-4 lg:mr-0 sm:mr-4 mr-2">
-                  <label
-                    for="footer-field"
-                    class="leading-7 text-sm text-gray-600"
-                  >
+                  <label for="footer-field" class="leading-7 text-sm text-gray-600">
                     Email
                   </label>
                   <input
