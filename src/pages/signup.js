@@ -4,6 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useLoginUserMutation, useSignupUserMutation } from '../features/apiSlice';
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

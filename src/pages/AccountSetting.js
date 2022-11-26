@@ -9,18 +9,28 @@ const accessToken = 'Bearer ' + getCookie('user-token');
 
 const UserSetting = () => {
   const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+  const [passwordCurrent, setPasswordCurrent] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [photo, setPhoto] = useState('');
   const [AdminData, setAdminData] = useState(null);
   //const [updateMe, { data, isLoading, isSuccess }] = useUpdateMeMutation();
 
   const updateMeData = async () => {
-    await FetchAPIData('users/updateMe', 'patch', { email, password });
+    await FetchAPIData('users/updateMe', 'patch', { email, name });
     // setCookie('user-token', 'loggedout');
     // window.location.href = '/';
     //updateMe({ email, password, photo });
   };
-  console.log(AdminData);
+  const updatePassword = async () => {
+    await FetchAPIData('users/updateMyPassword', 'patch', {
+      passwordCurrent,
+      password,
+      confirmPassword,
+    });
+  };
+  //console.log(AdminData);
 
   const saveProfilePic = async (event) => {
     event.preventDefault();
@@ -56,25 +66,26 @@ const UserSetting = () => {
               <input
                 className="text-sm appearance-none rounded w-full py-2 px-3 text-gray-700 bg-gray-200 leading-tight focus:outline-none focus:shadow-outline h-10"
                 id="email"
-                type="text"
+                type="email"
                 placeholder="Your email address"
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
               />
             </div>
             <div className="mb-6 mt-6">
-              <label className="block text-gray-700 text-sm font-semibold mb-2" htmlFor="password">
-                Password
+              <label className="block text-gray-700 text-sm font-semibold mb-2" htmlFor="name">
+                name
               </label>
               <input
                 className="text-sm bg-gray-200 appearance-none rounded w-full py-2 px-3 text-gray-700 mb-1 leading-tight focus:outline-none focus:shadow-outline h-10"
-                id="password"
-                type="password"
-                placeholder="Your password"
-                value={password}
-                onChange={(event) => setPassword(event.target.value)}
+                id="name"
+                type="text"
+                placeholder="Your name"
+                value={name}
+                onChange={(event) => setName(event.target.value)}
               />
             </div>
+
             <div className="flex w-full mt-10 justify-end">
               <button
                 className=" bg-[#A1CF6B] text-[#2b2a2a] hover:text-black-200 border-none text-sm py-2 px-5 font-semibold rounded focus:outline-none focus:shadow-outline"
@@ -127,15 +138,33 @@ const UserSetting = () => {
         <div className="p-8 w-full">
           <p className="text-3xl mb-8">Change Password</p>
           <form method="post" action="#" onSubmit="return false">
-            <div className="mb-4 mt-6">
-              <label className="block text-gray-700 text-sm font-semibold mb-2" htmlFor="email">
+            <div className="mb-6 mt-6">
+              <label
+                className="block text-gray-700 text-sm font-semibold mb-2"
+                htmlFor="currentPassword"
+              >
+                CurrentPassword
+              </label>
+              <input
+                className="text-sm bg-gray-200 appearance-none rounded w-full py-2 px-3 text-gray-700 mb-1 leading-tight focus:outline-none focus:shadow-outline h-10"
+                id="currentPassword"
+                type="password"
+                placeholder="Your current password"
+                value={passwordCurrent}
+                onChange={(event) => setPasswordCurrent(event.target.value)}
+              />
+            </div>
+            <div className="mb-6 mt-6">
+              <label className="block text-gray-700 text-sm font-semibold mb-2" htmlFor="password">
                 Password
               </label>
               <input
-                className="text-sm appearance-none rounded w-full py-2 px-3 text-gray-700 bg-gray-200 leading-tight focus:outline-none focus:shadow-outline h-10"
-                id="email"
-                type="text"
-                placeholder="Your Password"
+                className="text-sm bg-gray-200 appearance-none rounded w-full py-2 px-3 text-gray-700 mb-1 leading-tight focus:outline-none focus:shadow-outline h-10"
+                id="password"
+                type="password"
+                placeholder="Your password"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
               />
             </div>
             <div className="mb-6 mt-6">
@@ -147,6 +176,8 @@ const UserSetting = () => {
                 id="password"
                 type="password"
                 placeholder="Confirm Your Password"
+                value={confirmPassword}
+                onChange={(event) => setConfirmPassword(event.target.value)}
               />
             </div>
 
@@ -154,6 +185,7 @@ const UserSetting = () => {
               <button
                 className=" bg-[#A1CF6B] text-[#2b2a2a] hover:text-black-200 border-none text-sm py-2 px-5 font-semibold rounded focus:outline-none focus:shadow-outline"
                 type="button"
+                onClick={() => updatePassword()}
               >
                 Save Password
               </button>
