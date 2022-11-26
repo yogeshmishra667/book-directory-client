@@ -6,7 +6,6 @@ import cantHurt from '../assets/cant hurt me.jpg';
 import ikigai from '../assets/atomic-habits.png';
 
 const HeroPage = ({ userData }) => {
-
   return (
     <div name="home" className="w-full h-screen flex flex-col justify-between">
       <Navbar userData={userData} />
@@ -17,7 +16,11 @@ const HeroPage = ({ userData }) => {
             Not Sure What To Read Next ? Explore Our Catalog Of Public Domain Books With Our Editors
             .
           </p>
-          <button className="p-3 mt-8">Explore Now</button>
+          <button className="p-3 mt-8">
+            <a href="https://play.google.com/store/books/" target="_blank">
+              Explore Now
+            </a>
+          </button>
         </div>
         <div className="flex w-full items-center justify-around">
           <div className="rounded-lg w-80 h-94 border-8 border-[#BC78EC] ml-8 shadow-xl">

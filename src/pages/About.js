@@ -22,8 +22,16 @@ const About = () => {
             "knowing is not enough, we must apply".
           </p>
           <button className="bg-[#A1CF6B] text-black-300 border-none border-black px-8 py-3 mt-8">
-            <a href="https://linktr.ee/yogi.js" target="_blank">
+            <a
+              href="https://asset.cloudinary.com/yogijs/cd4e3174cdca13dc0bcf4c5bac45528e"
+              target="_blank"
+            >
               Download CV
+            </a>
+          </button>
+          <button className="bg-[#A1CF6B] text-black-300 border-none border-black px-8 py-3 mt-8 ml-4">
+            <a href="https://linktr.ee/yogi.js" target="_blank">
+              More Links
             </a>
           </button>
         </div>

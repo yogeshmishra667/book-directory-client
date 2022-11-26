@@ -16,8 +16,8 @@ const UserSetting = () => {
 
   const updateMeData = async () => {
     await FetchAPIData('users/updateMe', 'patch', { email, password });
-    setCookie('user-token', 'loggedout');
-    window.location.href = '/';
+    // setCookie('user-token', 'loggedout');
+    // window.location.href = '/';
     //updateMe({ email, password, photo });
   };
   console.log(AdminData);
@@ -25,14 +25,14 @@ const UserSetting = () => {
   const saveProfilePic = async (event) => {
     event.preventDefault();
     const formData = new FormData();
-    formData.append("photo", photo);
+    formData.append('photo', photo);
     try {
       const { data } = await axios({
         method: 'patch',
         data: formData,
         url: `${BASE_URL}users/updateMe`,
         headers: {
-          "Content-Type": "multipart/form-data",
+          'Content-Type': 'multipart/form-data',
           Authorization: accessToken,
         },
       });
@@ -40,7 +40,7 @@ const UserSetting = () => {
     } catch (error) {
       console.log(error.response);
     }
-  }
+  };
 
   return (
     <div>

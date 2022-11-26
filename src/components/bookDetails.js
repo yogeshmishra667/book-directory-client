@@ -1,27 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import mainImg from '../assets/the-alchemist.jpeg';
+import mainImg from '../assets/cant hurt me.jpg';
 import { useParams } from 'react-router-dom';
 import { apiSlice } from '../features/apiSlice';
 import Spinner from '../pages/spinner';
 import PayButton from '../pages/payButton';
 import FetchAPIData from '../utils/FetchAPIData';
 
-const BookDetails = () => {
+const baseURL = `http://localhost:3000/`;
+const BookDetails = ({ userData }) => {
   let book;
   let { id } = useParams();
   const { data, isFetching, isSuccess, isError } = apiSlice.useGetBookQuery(id);
-
-  const [userData, setUserData] = useState(null);
-
-  const getUserData = async () => {
-    const userDataRaw = await FetchAPIData('users/getUserData', 'get');
-    setUserData(userDataRaw.data.data);
-  };
-
-  useEffect(() => {
-    getUserData();
-  }, []);
-  // const bookData = data.data.book;
 
   if (isFetching) {
     book = <Spinner />;
@@ -30,7 +19,11 @@ const BookDetails = () => {
       <div className="w-full h-full p-20 items-center">
         <div className="grid md:grid-cols-2 max-w-[1240px]">
           <div>
-            <img src={mainImg} alt="" />
+            <img
+              src={`${baseURL}/img/books/${data.data.book.bookCover}`}
+              alt=""
+              className="rounded-lg object-contain h-100 w-96"
+            />
           </div>
           <div className="space-y-4">
             <h1 className="text-4xl font-bold pt-8">{data.data.book.title}</h1>
@@ -88,9 +81,9 @@ const BookDetails = () => {
                 <img src={mainImg} alt="" className="w-[140px] h-[210px]" />
               </div>
               <div className="leading-8">
-                <p>Title:The Alchemist</p>
-                <p>Author: yogesh</p>
-                <p>Price: 300</p>
+                <p>Title:Can't hurt me</p>
+                <p>Author: David Goggins</p>
+                <p>Price: 400</p>
                 <button className="px-3 mt-4">Read more</button>
               </div>
             </div>

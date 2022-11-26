@@ -40,7 +40,7 @@ function App() {
         <Route path="/" element={<Index userData={userData} />} />
         <Route path="/:id" element={<BookDetails />} />
         <Route path="/moreBooks" element={<MoreBooks />} />
-        <Route path="/moreBooks/:id" element={<BookDetails />} />
+        <Route path="/moreBooks/:id" element={<BookDetails userData={userData} />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/admin" element={<AccountSetting userData={userData} />} />
