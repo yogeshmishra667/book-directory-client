@@ -9,14 +9,9 @@ import {
 } from '@heroicons/react/24/solid';
 import AccountSetting from './AccountSetting';
 import { Link } from 'react-router-dom';
-import AdminBook from './Admin/AdminBook';
-import AdminUser from './Admin/AdminUser';
-import Signin from './signin';
-import AddBook from './Admin/AddBook';
-import UpdateBook from './Admin/UpdateBook';
-import { useSelector } from 'react-redux';
 import { setCookie } from '../utils/CookiesHelper';
 import FetchAPIData from '../utils/FetchAPIData';
+import AdminUserCard from './../components/AdminUserCard';
 
 const baseURLImg = `http://localhost:3000/img/users`;
 const Setting = ({ userData }) => {
@@ -25,6 +20,7 @@ const Setting = ({ userData }) => {
     setCookie('user-token', 'loggedout');
     window.location.href = '/';
   };
+
   //const userDataRaw = await FetchAPIData('users/getUserData', 'get');
   // console.log(userData.photo);
   return (
@@ -80,13 +76,23 @@ const Setting = ({ userData }) => {
                     </Link>
                   </div>
                 </li>
+                <li>
+                  <div className="flex items-center justify-evenly md:justify-start">
+                    <span className="">
+                      <BookOpenIcon className="w-8 md:w-5" />
+                    </span>
+                    <Link to="/admin/addBook">
+                      <p className="ml-3 hidden md:flex">Add Books</p>
+                    </Link>
+                  </div>
+                </li>
               </>
             )}
           </ul>
           <div className="flex items-end justify-center h-[46%] ">
             <div className=" p-4 mt-12">
               <div className="w-16 h-16 rounded-full bg-slate-500 mb-5">
-                <img className="rounded" src={`${baseURLImg}/${userData.photo}`} />
+                <img className="rounded" src={`${baseURLImg}/${userData?.photo}`} />
               </div>
               <p className="hidden md:flex">{userData.name}</p>
 

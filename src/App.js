@@ -21,6 +21,7 @@ import Success from './pages/success';
 import Failed from './pages/failed';
 import { useEffect, useState } from 'react';
 import FetchAPIData from './utils/FetchAPIData';
+import AddBook from './pages/Admin/AddBook';
 
 function App() {
   const [userData, setUserData] = useState(null);
@@ -46,6 +47,7 @@ function App() {
         <Route path="/admin" element={<AccountSetting userData={userData} />} />
         <Route path="/admin/manageUsers" element={<ManageUsers />} />
         <Route path="/admin/manageBooks" element={<ManageBooks />} />
+        <Route path="/admin/addBook" element={<AddBook />} />
         <Route path="/success" element={<Success />} />
         <Route path="/failed" element={<Failed />} />
       </Routes>
