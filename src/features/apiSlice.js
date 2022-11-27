@@ -1,9 +1,21 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { getCookie } from '../utils/CookiesHelper';
 
 const baseURI = 'http://localhost:8000/api/v1/';
 
 export const apiSlice = createApi({
-  baseQuery: fetchBaseQuery({ baseUrl: baseURI }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: baseURI,
+    prepareHeaders: (headers) => {
+      const accessToken = 'Bearer ' + getCookie('user-token');
+
+      // If we have a token set in state, let's assume that we should be passing it.
+      if (accessToken) {
+        headers.set('Authorization', accessToken);
+      }
+      return headers;
+    },
+  }),
   tagTypes: ['Book', 'User'],
   endpoints: (builder) => ({
     updateMe: builder.mutation({
@@ -87,9 +99,10 @@ export const apiSlice = createApi({
       query: (id) => {
         // delete: 'http://localhost:8000/api/v1/books'
         return {
-          url: `/${id}`,
+          url: `/books/${id}`,
           method: 'DELETE',
           body: id,
+          credentials: 'include',
         };
       },
       invalidatesTags: ['Book'],

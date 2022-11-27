@@ -1,7 +1,17 @@
-import React from 'react';
+// import { Link } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
+// import { useDeleteBooksMutation } from '../features/apiSlice';
+// import Swal from 'sweetalert2';
 
-const Delete = () => {
-  return <div>the book deleted</div>;
-};
+// const DeleteBook = ({ book }) => {
+//   console.log(book);
+//   const navigate = useNavigate();
+//   const [deleteBooks, response] = useDeleteBooksMutation();
+//   return (
+//     <div name="book" className="flex">
 
-export default Delete;
+//     </div>
+//   );
+// };
+
+// export default DeleteBook;
