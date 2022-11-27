@@ -85,11 +85,11 @@ export const apiSlice = createApi({
 
     // add new Transaction
     updateBook: builder.mutation({
-      query: (payload) => ({
+      query: (id) => ({
         // patch: 'http://localhost:8000/api/v1/books'
-        url: '/',
-        method: 'POST',
-        body: payload,
+        url: `/books/${id}`,
+        method: 'PATCH',
+        body: id,
       }),
       invalidatesTags: ['Book'],
     }),

@@ -5,6 +5,11 @@ import DeleteBook from '../pages/delete';
 import { useNavigate } from 'react-router-dom';
 import { useDeleteBooksMutation } from '../features/apiSlice';
 import Swal from 'sweetalert2';
+import { getCookie } from '../utils/CookiesHelper';
+
+const BASE_URL = 'http://localhost:8000/api/v1/';
+const baseURL = `http://localhost:3000/`;
+const accessToken = 'Bearer ' + getCookie('user-token');
 
 const AdminBookCard = ({ book }) => {
   const navigate = useNavigate();
@@ -14,7 +19,11 @@ const AdminBookCard = ({ book }) => {
     <div className="flex mb-8">
       <div className="relative ml-4 md:ml-0 grid grid-cols-4 md:grid-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-5xl  border border-white bg-white">
         <div className="hidden md:flex bg-white col-span-1 place-items-center">
-          <img src={mainImg} alt="tailwind logo" className="rounded-xl w-[180px] h-[260px]" />
+          <img
+            src={`${baseURL}/img/books/${book.bookCover}`}
+            alt="tailwind logo"
+            className="rounded-xl w-[180px] h-[260px]"
+          />
         </div>
         <div className="w-full bg-white space-y-2 p-3 col-span-3">
           <p className="md:text-base text-gray-500 text-base">
@@ -77,7 +86,7 @@ const AdminBookCard = ({ book }) => {
             </div>
           </div>
           <div className="flex space-x-4 pt-4">
-            <AddImage />
+            <AddImage book={book} />
             <button className="px-8 bg-[#A1CF6B] hover:bg-[#8d9f77] hover:text-[#ffffff] border-none text-white font-bold py-2  rounded">
               Update
             </button>
@@ -104,7 +113,7 @@ const AdminBookCard = ({ book }) => {
                 });
               }}
               disabled={response.isLoading}
-              className="mx-2 bg-bermuda border hover:bg-blue-700py-2 px-4 rounded"
+              className="mx-2 bg-red-500 border-none hover:red-700py-2 px-4 rounded"
             >
               {response.isLoading ? 'Deleting...' : 'Delete'}
             </button>
